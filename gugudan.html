@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1" >gugudan</button>
+    <button class="gugudan">gugudan1</button>
+    <button class="gugudan" onclick='gugudan(5)'>gugudan2</button> //이때 onclick으로 넣어주면 매개값으로 5을 받아서 출력할 수 있음.
+    <script>
+        var $doc = document.getElementById('btn1'); //id는 한 건만 가져 옴.
+        var $doc = document.getElementsByTagName('button')[0]; //button이란 태그의 이름을 읽어 옴. 여러 개 읽어올 수 있음(배열로 읽음). 그러므로 몇 번째 버튼인지 배열 번호를 붙여야 내용을 볼 수 있음.
+        var $doc = document.getElementsByClassName('gugudan')[1];
+        // console.log($doc);
+        var dan = 5;
+        $doc.onclick = gugudan; //gugudan 대신 gugudan()를 입력하면 누르기도 전에 실행되어 버리므로 이름만 넣도록 해야 함.
+        // gugudan(5);
+        function gugudan(dan){
+            console.log(dan); //확인해 보면 dan이란 변수는 이벤트 값이 실행되고 있음을 볼 수 있음. 왜냐면 onclick에 gugudan을 연결했기 때문.
+            //만약 온클릭에 연결하지 않고 그냥 'gugudan(5);'로 호출한다면 매개값은 그대로 숫자로 인식함.
+            //즉 이벤트 뒤에 펑션을 걸어주면 gugudan()의 ()안에는 이벤트가 반영된 값이 들어감.
+            var newDan = dan.view.dan; //콘솔에서 그 값을 확인해 보면 view에 있음을 알 수 있음.
+            document.write(newDan + "<b>hello</b>" + "<br>"); //그래서 이렇게 출력하면 해당 값을 올바르게 호출할 수 있음.
+
+            //입력하는 단수로 구구단 출력
+            for(let i=1; i<10; i++){
+                document.write(newDan + "*" + i + "=" + newDan*i + "<br>")
+            }
+
+            //구구단 전체
+            for(let i=1; i<10; i++) {
+                for(let j = 2; j<10; j++){
+                    document.write(j + "*"+ i + "=" + i*j + "&nbsp&nbsp&nbsp&nbsp");
+                } document.write("<br>");
+            }
+
+        }
+    </script>
+</body>
+</html>
